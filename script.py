@@ -16,7 +16,6 @@ def enough_tokens(messages, new_question):
         return True
     return False
 
-
 # file prep
 file_read = open(source, 'r', encoding='utf-8-sig')
 file_write = open(destination, 'a')
@@ -26,9 +25,6 @@ lines = list(filter(lambda x: x, lines))
 
 # initialize messages
 messages = [ {"role": "system", "content": prompt} ]
-
-# record prompt
-file_write.write(prompt + '\n\n')
 
 i = 0
 while i < len(lines):
@@ -58,7 +54,7 @@ while i < len(lines):
         messages.append({"role": "assistant", "content": reply})
 
         file_write.write(reply)
-        print(i / len(lines))
+        print("progress: " + i * 100 / len(lines) + "%")
     
 
 file_read.close()
